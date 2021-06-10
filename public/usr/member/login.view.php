@@ -16,7 +16,7 @@ $pageTitle = "로그인";
     <div align='center'>
     <span>로그인</span>
 
-    <form action="doLogin.php">
+    <form action="doLogin.php" method="POST">
     <p>ID : <input required placeholder="ID" type="text" name="loginId"></p> 
     <p>PW : <input required placeholder="PW" type="password" name="loginPw"></p> 
   

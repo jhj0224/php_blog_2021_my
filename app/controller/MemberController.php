@@ -8,6 +8,10 @@ class APP__UsrMemberController {
   }
 
   public function actionShowLogin() {
+    if ( $_REQUEST['App__isLogined'] ) {
+      jsHistoryBackExit("이미 로그인 되었습니다.");
+    }
+    
     require_once App__getViewPath("usr/member/login");
   }
 
@@ -17,18 +21,22 @@ class APP__UsrMemberController {
   }
 
   public function actionDoLogin() {
-    if ( isset($_GET['loginId']) == false ) {
+    if ( $_REQUEST['App__isLogined'] ) {
+      jsHistoryBackExit("이미 로그인 되었습니다.");
+    }
+    
+    if ( isset($_REQUEST['loginId']) == false ) {
       echo "loginId를 입력해주세요.";
       exit;
     }
     
-    if ( isset($_GET['loginPw']) == false ) {
+    if ( isset($_REQUEST['loginPw']) == false ) {
       echo "loginPw를 입력해주세요.";
       exit;
     }
     
-    $loginId = $_GET['loginId'];
-    $loginPw = $_GET['loginPw'];
+    $loginId = $_REQUEST['loginId'];
+    $loginPw = $_REQUEST['loginPw'];
     
     $member = $this->memberService->getForPrintMemberByLoginIdAndLoginPw($loginId, $loginPw);
     

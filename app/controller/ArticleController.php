@@ -7,14 +7,22 @@ class APP__UsrArticleController {
     $this->articleService = $App__articleService;
   }
 
-  public function actionShowWrite() {
+  public function actionShowWrite() {        
+    if ( $_REQUEST['App__isLogined'] === false ) {
+      jsHistoryBackExit("로그인 후 이용해주세요.");
+    }
+
     require_once App__getViewPath("usr/article/write");
   }
 
   public function actionDoModify() {
-    $id = getIntValueOr($_GET['id'], 0);
-    $title = getStrValueOr($_GET['title'], "");
-    $body = getStrValueOr($_GET['body'], "");
+    if ( $_REQUEST['App__isLogined'] === false ) {
+      jsHistoryBackExit("로그인 후 이용해주세요.");
+    }
+    
+    $id = getIntValueOr($_REQUEST['id'], 0);
+    $title = getStrValueOr($_REQUEST['title'], "");
+    $body = getStrValueOr($_REQUEST['body'], "");
 
     if ( !$id ) {
       jsHistoryBackExit("번호를 입력해주세요.");
@@ -40,7 +48,11 @@ class APP__UsrArticleController {
   }
 
   public function actionDoDelete() {
-    $id = getIntValueOr($_GET['id'], 0);
+    if ( $_REQUEST['App__isLogined'] === false ) {
+      jsHistoryBackExit("로그인 후 이용해주세요.");
+    }
+    
+    $id = getIntValueOr($_REQUEST['id'], 0);
     
     if ( !$id ) {
       jsHistoryBackExit("번호를 입력해주세요.");
@@ -58,9 +70,13 @@ class APP__UsrArticleController {
   }
 
   public function actionDoWrite() {
-    $title = getStrValueOr($_GET['title'], "");
-    $body = getStrValueOr($_GET['body'], "");
-
+    if ( $_REQUEST['App__isLogined'] === false ) {
+      jsHistoryBackExit("로그인 후 이용해주세요.");
+    }
+    
+    $title = getStrValueOr($_REQUEST['title'], "");
+    $body = getStrValueOr($_REQUEST['body'], "");
+    
     if ( !$title ) {
       jsHistoryBackExit("제목을 입력해주세요.");
     }
@@ -76,12 +92,12 @@ class APP__UsrArticleController {
 
   public function actionShowList() {
     $articles = $this->articleService->getForPrintArticles();
-
+    
     require_once App__getViewPath("usr/article/list");
   }
 
   public function actionShowDetail() {
-    $id = getIntValueOr($_GET['id'], 0);
+    $id = getIntValueOr($_REQUEST['id'], 0);
 
     if ( $id == 0 ) {
       jsHistoryBackExit("번호를 입력해주세요.");
@@ -99,7 +115,11 @@ class APP__UsrArticleController {
   }
       
   public function actionShowModify() {
-    $id = getIntValueOr($_GET['id'], 0);
+    if ( $_REQUEST['App__isLogined'] === false ) {
+      jsHistoryBackExit("로그인 후 이용해주세요.");
+    }
+    
+    $id = getIntValueOr($_REQUEST['id'], 0);
 
     if ( $id == 0 ) {
       jsHistoryBackExit("번호를 입력해주세요.");
