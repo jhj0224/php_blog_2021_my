@@ -72,4 +72,22 @@ class APP__UsrMemberController {
                
     jsLocationReplaceExit("../article/list.php", "{$nickname}님 환영합니다.");    
   }
+
+  public function actionShowmemberModify() {
+    require_once App__getViewPath("usr/member/memberModify");
+  }
+
+  public function actionDomemberModify() {      
+    $id = getIntValueOr($_SESSION['loginedMemberId'], 0);
+    $loginId = getStrValueOr($_REQUEST['loginId'], "");        
+    $loginPw = getStrValueOr($_REQUEST['loginPw'], "");
+    $name = getStrValueOr($_REQUEST['name'], "");
+    $nickname = getStrValueOr($_REQUEST['nickname'], "");
+    $cellphoneNo = getStrValueOr($_REQUEST['cellphoneNo'], "");
+    $email = getStrValueOr($_REQUEST['email'], "");
+    
+    $id = $this->memberService->memberModify($id, $loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+               
+    jsLocationReplaceExit("../article/list.php", "회원정보가 수정되었습니다.");    
+  }
 }

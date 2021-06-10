@@ -44,4 +44,20 @@ class APP__MemberRepository {
     return $id;
     
   }
+
+  public function memberModify(int $id, string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email) {
+    $sql = DB__secSql();
+    $sql->add("UPDATE member");    
+    $sql->add("SET updateDate = NOW()");
+    $sql->add(", loginId = ?", $loginId);
+    $sql->add(", loginPw = ?", $loginPw);
+    $sql->add(", name = ?", $name);
+    $sql->add(", nickname = ?", $nickname);
+    $sql->add(", cellphoneNo = ?", $cellphoneNo);
+    $sql->add(", email = ?", $email);
+    $sql->add("WHERE id = ?", $id);
+    
+    $id = DB__update($sql);  
+    
+  }
 }

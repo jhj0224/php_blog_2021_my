@@ -21,4 +21,7 @@ class APP__MemberService {
   public function join(string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email): int {
     return $this->memberRepository->join($loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
   }
+  public function memberModify(int $id, string $loginId, string $loginPw, string $name, string $nickname, string $cellphoneNo, string $email) {
+    $this->memberRepository->memberModify($id, $loginId, $loginPw, $name, $nickname, $cellphoneNo, $email);
+  }
 }
