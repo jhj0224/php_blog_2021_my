@@ -12,20 +12,17 @@ $pageTitle = "로그인";
   
 </head>
 <body>
-  <h1><?=$pageTitle?></h1>
-  <hr>
+  
+    <div align='center'>
+    <span>로그인</span>
 
-<form action="doLogin.php">
-  <div>
-    <span>로그인아이디</span>
-    <input required placeholder="로그인아이디를 입력해주세요." type="text" name="loginId"> 
-  </div>
-  <div>
-    <span>로그인비밀번호</span>
-    <input required placeholder="로그인비밀번호를 입력해주세요." type="password" name="loginPw"> 
-  </div>
+    <form action="doLogin.php">
+    <p>ID : <input required placeholder="ID" type="text" name="loginId"></p> 
+    <p>PW : <input required placeholder="PW" type="password" name="loginPw"></p> 
+  
   <div>
     <input type="submit" value="로그인">
+    <a href="../member/join.php"><input type="button" value="회원가입"></a>
   </div>
 </form>
 

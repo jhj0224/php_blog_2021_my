@@ -20,6 +20,5 @@ $loginedMember = $GLOBALS['App__loginedMember'];
     <a href="../member/doLogout.php"><input type="button" value="로그아웃"></a>
   <!-- unset($_SESSION); -->
   <?php } else { ?>
-    <a href="../member/login.php"><input type="button" value="로그인"></a>
-    <a href="../member/join.php"><input type="button" value="회원가입"></a>    
+    <a href="../member/login.php"><input type="button" value="로그인"></a>        
   <?php } ?>
